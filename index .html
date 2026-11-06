@@ -1,0 +1,357 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full bg-slate-950">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Márcia Consultora - Proteção Veicular</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fontes Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            marcia: {
+              dark: '#07111E',
+              navy: '#0B2545',
+              blue: '#134074',
+              cyan: '#00D2FF',
+              cyanDark: '#0088CC',
+              emerald: '#25D366',
+              emeraldDark: '#1EBE5D'
+            }
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 20px rgba(0, 210, 255, 0.35)',
+            'glow-emerald': '0 0 20px rgba(37, 211, 102, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      background: radial-gradient(circle at top, #134074 0%, #07111E 100%);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #1e3a8a;
+      border-radius: 10px;
+    }
+
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .btn-pulse {
+      animation: pulse-subtle 2.5s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="h-full font-sans antialiased text-slate-100 flex justify-center items-center p-0 sm:p-4">
+
+  <!-- APP CONTAINER CENTRALIZADO (Estilo Cartão Escuro / Mobile App) -->
+  <div class="w-full max-w-md bg-marcia-navy h-full sm:h-[880px] sm:max-h-[96vh] sm:rounded-[36px] shadow-2xl border-0 sm:border border-slate-700/50 overflow-hidden flex flex-col justify-between relative">
+
+    <!-- HEADER MÁRCIA CONSULTORA -->
+    <header class="bg-gradient-to-r from-marcia-dark via-marcia-navy to-marcia-blue px-5 pt-6 pb-5 relative overflow-hidden shadow-lg border-b border-white/10 flex-shrink-0">
+      <!-- Elementos Decorativos -->
+      <div class="absolute -right-8 -top-8 w-32 h-32 bg-marcia-cyan/15 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -left-8 -bottom-8 w-28 h-28 bg-emerald-500/10 rounded-full blur-xl pointer-events-none"></div>
+
+      <!-- Topo: Logo + Contato -->
+      <div class="flex items-center justify-between relative z-10 mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-marcia-cyan to-blue-600 flex items-center justify-center font-black text-white text-xl shadow-lg shadow-marcia-cyan/20 border border-white/20">
+            MC
+          </div>
+          <div>
+            <h1 class="font-black text-lg leading-tight tracking-tight text-white flex items-center gap-1.5">
+              MÁRCIA <span class="text-marcia-cyan font-semibold">CONSULTORA</span>
+            </h1>
+            <p class="text-[10px] text-slate-300 font-bold tracking-widest uppercase">Proteção Veicular Personalizada</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/5531999999999" target="_blank" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-xs font-semibold text-marcia-cyan transition">
+          <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+          <span>Falar</span>
+        </a>
+      </div>
+
+      <!-- PROGRESS BAR (4 PASSOS) -->
+      <div class="relative z-10">
+        <div class="flex justify-between items-center mb-2">
+          <span id="step-badge" class="text-[10px] font-extrabold uppercase tracking-wider text-marcia-cyan bg-marcia-cyan/10 px-2.5 py-0.5 rounded-md border border-marcia-cyan/20">Passo 1 de 4</span>
+          <span id="step-title-indicator" class="text-xs font-medium text-slate-300">Tipo & Placa do Veículo</span>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-2">
+          <div id="bar-1" class="h-1.5 rounded-full bg-marcia-cyan transition-all duration-300 shadow-glow-cyan"></div>
+          <div id="bar-2" class="h-1.5 rounded-full bg-white/20 transition-all duration-300"></div>
+          <div id="bar-3" class="h-1.5 rounded-full bg-white/20 transition-all duration-300"></div>
+          <div id="bar-4" class="h-1.5 rounded-full bg-white/20 transition-all duration-300"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL COM SCROLL -->
+    <main class="flex-1 p-5 overflow-y-auto custom-scrollbar flex flex-col justify-between">
+
+      <!-- ================= PASSO 1: SELEÇÃO TIPO + PLACA + FIPE ================= -->
+      <section id="step-1" class="space-y-4 animate-fadeIn">
+        <div>
+          <h2 class="text-xl font-extrabold text-white">Qual veículo você deseja proteger?</h2>
+          <p class="text-xs text-slate-300 mt-0.5">Selecione a categoria e digite a placa para localizar a FIPE.</p>
+        </div>
+
+        <!-- Grid de Tipos de Veículo -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-2">1. Categoria do Veículo</label>
+          <div class="grid grid-cols-3 gap-2">
+            
+            <label class="cursor-pointer">
+              <input type="radio" name="tipo_veiculo" value="Carro" checked class="peer sr-only" onchange="alterarTipoVeiculo('Carro', 'carros')">
+              <div class="p-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/15 peer-checked:text-marcia-cyan text-slate-300 transition shadow-md">
+                <i class="fa-solid fa-car text-lg block mb-1"></i>
+                <span class="text-[11px] font-bold">Carro</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="tipo_veiculo" value="Moto" class="peer sr-only" onchange="alterarTipoVeiculo('Moto', 'motos')">
+              <div class="p-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/15 peer-checked:text-marcia-cyan text-slate-300 transition shadow-md">
+                <i class="fa-solid fa-motorcycle text-lg block mb-1"></i>
+                <span class="text-[11px] font-bold">Moto</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="tipo_veiculo" value="Caminhão" class="peer sr-only" onchange="alterarTipoVeiculo('Caminhão', 'caminhoes')">
+              <div class="p-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/15 peer-checked:text-marcia-cyan text-slate-300 transition shadow-md">
+                <i class="fa-solid fa-truck text-lg block mb-1"></i>
+                <span class="text-[11px] font-bold">Caminhão</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="tipo_veiculo" value="Carreta / Reboque" class="peer sr-only" onchange="alterarTipoVeiculo('Carreta / Reboque', 'caminhoes')">
+              <div class="p-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/15 peer-checked:text-marcia-cyan text-slate-300 transition shadow-md">
+                <i class="fa-solid fa-trailer text-lg block mb-1"></i>
+                <span class="text-[11px] font-bold">Carreta</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="tipo_veiculo" value="Utilitário / Van" class="peer sr-only" onchange="alterarTipoVeiculo('Utilitário / Van', 'carros')">
+              <div class="p-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/15 peer-checked:text-marcia-cyan text-slate-300 transition shadow-md">
+                <i class="fa-solid fa-van-shuttle text-lg block mb-1"></i>
+                <span class="text-[11px] font-bold">Van / Util</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="tipo_veiculo" value="Outros" class="peer sr-only" onchange="alterarTipoVeiculo('Outros', 'carros')">
+              <div class="p-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/15 peer-checked:text-marcia-cyan text-slate-300 transition shadow-md">
+                <i class="fa-solid fa-cubes text-lg block mb-1"></i>
+                <span class="text-[11px] font-bold">Outros</span>
+              </div>
+            </label>
+
+          </div>
+        </div>
+
+        <!-- Campo Adicional se "Outros" for Selecionado -->
+        <div id="container-outro-tipo" class="hidden">
+          <label class="block text-[11px] font-bold text-slate-300 mb-1">Especifique o Tipo do Veículo / Equipamento:</label>
+          <input type="text" id="input-outro-tipo" placeholder="Ex: Quadriciclo, Reboque especial, Maquinário" class="w-full p-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan">
+        </div>
+
+        <!-- Placa do Veículo -->
+        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-700/80 shadow-md space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-slate-200 uppercase flex items-center gap-1.5">
+              <i class="fa-solid fa-shield-halved text-marcia-cyan"></i> 2. Digite a Placa
+            </span>
+            <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">Mercosul / Padrão</span>
+          </div>
+
+          <input 
+            type="text" 
+            id="input-placa" 
+            placeholder="ABC1D23" 
+            maxlength="8" 
+            class="w-full text-center py-3 bg-slate-950 border-2 border-slate-700 rounded-xl font-mono font-black text-2xl uppercase tracking-widest text-white focus:outline-none focus:border-marcia-cyan transition shadow-inner"
+            oninput="formatarPlaca(this)"
+          >
+
+          <button 
+            type="button" 
+            onclick="consultarPlacaFipe()" 
+            id="btn-consultar-placa"
+            class="w-full bg-gradient-to-r from-marcia-cyanDark to-marcia-cyan text-slate-950 font-black py-3 rounded-xl shadow-glow-cyan flex items-center justify-center gap-2 transition active:scale-[0.98]"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Buscar FIPE pela Placa</span>
+          </button>
+        </div>
+
+        <!-- Indicador de Carregamento -->
+        <div id="loading-fipe" class="hidden bg-slate-900 border border-marcia-cyan/30 p-3.5 rounded-2xl text-center space-y-1.5">
+          <div class="inline-block animate-spin rounded-full h-6 w-6 border-2 border-marcia-cyan border-t-transparent"></div>
+          <p class="text-xs font-semibold text-slate-200">Consultando Tabela FIPE...</p>
+        </div>
+
+        <!-- Atalho de Seleção Manual -->
+        <div class="text-center pt-1">
+          <button type="button" onclick="exibirSeletoresManuais()" class="text-xs font-bold text-marcia-cyan hover:underline inline-flex items-center gap-1">
+            <i class="fa-solid fa-sliders"></i> Preencher Marca / Modelo / Ano Manualmente
+          </button>
+        </div>
+
+        <!-- Seleção Manual FIPE (Exibido se clicar ou falhar busca por placa) -->
+        <div id="card-fipe-manual" class="hidden bg-slate-900/90 p-3.5 rounded-2xl border border-slate-700 space-y-2.5">
+          <span class="text-xs font-bold text-marcia-cyan block border-b border-slate-800 pb-1">Seleção Manual FIPE:</span>
+
+          <div>
+            <label class="block text-[10px] text-slate-400 mb-0.5">Marca</label>
+            <select id="select-fipe-marca" onchange="aoSelecionarMarcaFipe()" class="w-full p-2 bg-slate-950 border border-slate-800 rounded-lg text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan">
+              <option value="">Carregando Marcas...</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[10px] text-slate-400 mb-0.5">Modelo</label>
+            <select id="select-fipe-modelo" onchange="aoSelecionarModeloFipe()" disabled class="w-full p-2 bg-slate-950 border border-slate-800 rounded-lg text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan disabled:opacity-40">
+              <option value="">Selecione a marca...</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[10px] text-slate-400 mb-0.5">Ano / Combustível</label>
+            <select id="select-fipe-ano" onchange="aoSelecionarAnoFipe()" disabled class="w-full p-2 bg-slate-950 border border-slate-800 rounded-lg text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan disabled:opacity-40">
+              <option value="">Selecione o modelo...</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[10px] text-slate-400 mb-0.5">Valor FIPE (R$)</label>
+            <input type="text" id="input-fipe-valor-manual" placeholder="R$ 0,00" class="w-full p-2 bg-slate-950 border border-slate-800 rounded-lg text-xs font-bold text-marcia-cyan focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Resumo FIPE Confirmado -->
+        <div id="card-fipe-sucesso" class="bg-gradient-to-br from-slate-900 to-marcia-navy p-4 rounded-2xl border border-marcia-cyan/40 shadow-lg relative overflow-hidden hidden">
+          <div class="flex justify-between items-start mb-1">
+            <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">
+              <i class="fa-solid fa-circle-check mr-1"></i> Veículo Identificado
+            </span>
+            <span id="badge-placa-fipe" class="font-mono text-xs font-bold bg-white/10 px-2 py-0.5 rounded text-white">---</span>
+          </div>
+
+          <h3 id="res-fipe-modelo" class="text-sm font-extrabold text-white mb-1">MARCA MODELO</h3>
+          
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 text-xs">
+            <div>
+              <span class="text-slate-400 text-[10px] uppercase block">Ano</span>
+              <strong id="res-fipe-ano" class="text-white font-semibold">---</strong>
+            </div>
+            <div>
+              <span class="text-slate-400 text-[10px] uppercase block">Valor FIPE</span>
+              <strong id="res-fipe-valor" class="text-marcia-cyan font-black">R$ 0,00</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PASSO 2: DADOS DO CLIENTE & PERFIL ================= -->
+      <section id="step-2" class="space-y-4 hidden animate-fadeIn">
+        <div>
+          <h2 class="text-xl font-extrabold text-white">Dados do Cliente</h2>
+          <p class="text-xs text-slate-300 mt-0.5">Informe onde você está para direcionarmos o melhor plano.</p>
+        </div>
+
+        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-700/80 shadow-md space-y-3">
+          <!-- Nome -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-300 mb-1">Nome Completo *</label>
+            <div class="relative">
+              <i class="fa-regular fa-user absolute left-3 top-3 text-slate-500 text-xs"></i>
+              <input type="text" id="input-nome" placeholder="Digite seu nome" class="w-full pl-9 pr-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan">
+            </div>
+          </div>
+
+          <!-- WhatsApp -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-300 mb-1">WhatsApp / Telefone com DDD *</label>
+            <div class="relative">
+              <i class="fa-brands fa-whatsapp absolute left-3 top-2.5 text-emerald-400 text-sm"></i>
+              <input type="tel" id="input-whatsapp" placeholder="(31) 99999-9999" maxlength="15" oninput="mascaraTelefone(this)" class="w-full pl-9 pr-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan">
+            </div>
+          </div>
+
+          <!-- Cidade / UF -->
+          <div class="grid grid-cols-3 gap-2">
+            <div class="col-span-2">
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">Cidade *</label>
+              <input type="text" id="input-cidade" placeholder="Ex: Belo Horizonte" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">UF *</label>
+              <select id="input-uf" class="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-medium text-white focus:outline-none focus:border-marcia-cyan">
+                <option value="MG">MG</option>
+                <option value="SP">SP</option>
+                <option value="RJ">RJ</option>
+                <option value="ES">ES</option>
+                <option value="BA">BA</option>
+                <option value="PR">PR</option>
+                <option value="SC">SC</option>
+                <option value="RS">RS</option>
+                <option value="GO">GO</option>
+                <option value="DF">DF</option>
+                <option value="OUTRO">Outro</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Uso do Veículo -->
+          <div class="pt-1">
+            <label class="block text-[11px] font-bold text-slate-300 mb-1.5">Perfil de Uso do Veículo</label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="uso_veiculo" value="Particular / Passeio" checked class="peer sr-only">
+                <div class="p-2 border border-slate-800 bg-slate-950 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/10 text-slate-400 peer-checked:text-white transition">
+                  <span class="text-[11px] font-bold">Particular / Passeio</span>
+                </div>
+              </label>
+
+              <label class="cursor-pointer">
+                <input type="radio" name="uso_veiculo" value="Aplicativo / Uber / Táxi" class="peer sr-only">
+                <div class="p-2 border border-slate-800 bg-slate-950 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/10 text-slate-400 peer-checked:text-white transition">
+                  <span class="text-[11px] font-bold">App / Uber / Táxi</span>
+                </div>
+              </label>
+
+              <label class="cursor-pointer">
+                <input type="radio" name="uso_veiculo" value="Comercial / Empresa" class="peer sr-only">
+                <div class="p-2 border border-slate-800 bg-slate-950 rounded-xl text-center peer-checked:border-marcia-cyan peer-checked:bg-marcia-cyan/10 text-slate-400 peer-checked:text-white transition">
+                  <span c
